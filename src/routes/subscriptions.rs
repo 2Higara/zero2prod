@@ -51,8 +51,8 @@ pub async fn insert_subscriber(pool: &PgPool, form: &FormData) -> Result<(), sql
     .map_err(|e| {
         tracing::error!("Failed to execcute query: {:?}", e);
         e
-    // Using the '?' operator to return early, 
-    // If the function failed, returning a sqlx::Error
+        // Using the '?' operator to return early,
+        // If the function failed, returning a sqlx::Error
     })?;
     Ok(())
 }
