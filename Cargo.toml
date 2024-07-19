@@ -15,29 +15,30 @@ name = "zero2prod"
 actix-web = "4"
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 serde = { version = "1", features = ["derive"] }
-config = "0.13"
+config = "0.14"
 uuid = { version = "1", features = ["v4"] }
 chrono = { version = "0.4.22", default-features = false, features = ["clock"] }
 tracing = { version = "0.1", features = ["log"] }
 tracing-subscriber = { version = "0.3", features = ["registry", "env-filter"] }
 tracing-bunyan-formatter = "0.3"
-tracing-log = "0.1"
+tracing-log = "0.2.0"
 secrecy = { version = "0.8", features = ["serde"] }
 tracing-actix-web = "0.7"
 serde-aux = "4"
+unicode-segmentation = "1"
 
 [dependencies.sqlx]
 version = "0.7"
 default-features = false
 features = [
-    "runtime-tokio-rustls", # tells sqlx to use the tokio runtime for its futures and rustls as TLS backend
-    "macros",               # gives access to sqlx::query! and sqlx::query_qs!, which we will be using extensively
-    "postgres",             # unlocks Postgres-specific functionality(e.g. non-standard SQL types)
-    "uuid",                 # adds support for mapping SQL UUIDs to the Uuid type from the uuid crate. We need it to work with our id column
-    "chrono",               # adds support for mapping SQL timestampz to the DataTime<T> type from the chrono crate. we need it to work with our `subscribed_at` column
-    "migrate",              # gives us access to the same function used under the hood by `sqlx-cli` to manage migrations. It will turn out to be useful for out test suite
+  "runtime-tokio-rustls", # tells sqlx to use the tokio runtime for its futures and rustls as TLS backend
+  "macros",               # gives access to sqlx::query! and sqlx::query_qs!, which we will be using extensively
+  "postgres",             # unlocks Postgres-specific functionality(e.g. non-standard SQL types)
+  "uuid",                 # adds support for mapping SQL UUIDs to the Uuid type from the uuid crate. We need it to work with our id column
+  "chrono",               # adds support for mapping SQL timestampz to the DataTime<T> type from the chrono crate. we need it to work with our `subscribed_at` column
+  "migrate",              # gives us access to the same function used under the hood by `sqlx-cli` to manage migrations. It will turn out to be useful for out test suite
 ]
 
 [dev-dependencies]
-reqwest = "0.11"
+reqwest = "0.12"
 once_cell = "1"
